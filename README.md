@@ -1,5 +1,7 @@
 # Rocq Proof Agent
 
+![Rocq](https://img.shields.io/badge/Rocq%2FCoq-8.18-orange) ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white) ![Tests](https://img.shields.io/badge/tests-50%20passed-brightgreen) ![Licence](https://img.shields.io/badge/licence-MIT-blue)
+
 **Un LLM propose des preuves formelles, Rocq les vérifie, l'erreur revient au LLM.**
 Reproduction et évaluation, à petite échelle, d'approches récentes d'assistance
 à la vérification formelle par IA, appliquées à des propriétés de **sécurité
@@ -174,3 +176,7 @@ propre quota, et permet en plus une comparaison entre modèles.
 - First, Rabe, Ringer, Brun — *Baldur: Whole-Proof Generation and Repair with
   Large Language Models*, ESEC/FSE 2023 (sur Isabelle/HOL).
 - Pierce et al. — *Software Foundations, vol. 1 : Logical Foundations*.
+
+## Licence
+
+Distribué sous licence MIT (voir [`LICENSE`](LICENSE)).
