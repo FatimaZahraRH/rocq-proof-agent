@@ -1,0 +1,7 @@
+python-dotenv>=1.0
+pytest>=8.0
+
+# Fournisseurs LLM (seul celui choisi dans .env est utilisé)
+groq>=0.11
+openai>=1.40
+google-generativeai>=0.7
