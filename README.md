@@ -6,9 +6,9 @@ Reproduction et évaluation, à petite échelle, d'approches récentes d'assista
 mémoire** (accès hors bornes, isolation entre zones mémoire).
 
 > **État actuel.** Le benchmark, le vérificateur, l'agent et l'évaluation sont
-> fonctionnels et testés (45 tests). Le seul résultat mesuré à ce jour est la
-> **référence sans LLM** (tableau ci-dessous). Les résultats avec un vrai LLM
-> s'ajoutent en lançant `scripts/evaluate.py --provider groq`.
+> fonctionnels et testés (50 tests). Premiers résultats avec un vrai LLM
+> (gpt-oss-120b) : une seule passe, interrompue par le quota gratuit de l'API —
+> à lire comme une tendance, pas comme une mesure définitive.
 
 ---
 
@@ -72,11 +72,39 @@ La suite `memory_isolation` résiste entièrement à l'automatisation naïve : i
 faut des inductions et des études de cas propres aux définitions. C'est là que
 l'apport d'un LLM se mesure.
 
-### Avec un LLM
+### Avec un LLM — première passe (gpt-oss-120b via Groq, 14/10/2026)
 
-*À compléter* : `python scripts/evaluate.py --provider groq` produit le tableau
-des 4 configurations (zero-shot, feedback, retrieval, retrieval+feedback) dans
-`results/`.
+3 tentatives maximum par théorème, température 0,2, recherche par forme.
+
+| Configuration | basics | memory_isolation |
+|---|---|---|
+| Référence sans LLM | 3/10 | 0/11 |
+| LLM seul (zero-shot) | 7/10 | 6/11 |
+| LLM + retour d'erreur | **9/10** | **7/11** |
+| LLM + exemples | 8/10 | 5/11 |
+| LLM + exemples + retour d'erreur | 8/9 *(interrompu)* | *non lancé* |
+
+**Ce qu'on peut en dire, avec prudence :**
+
+- Le LLM fait nettement mieux que l'automatisation naïve, surtout sur
+  l'isolation mémoire (0 → 6 ou 7 théorèmes sur 11).
+- Le retour d'erreur de Rocq aide de façon cohérente sur les deux suites.
+- Les exemples seuls n'aident pas sur l'isolation mémoire dans cette passe
+  (5/11 contre 6/11 sans). Avec un seul essai par configuration et des écarts
+  d'un théorème, **ce n'est pas distinguable du hasard** : il faut plusieurs
+  passes avant de conclure.
+- Trois théorèmes n'ont été prouvés dans **aucune** configuration :
+  `write_read_other`, `write_outside_region_isolated` et
+  `safe_read_after_write_other`. Ce sont précisément les propriétés
+  d'**isolation** (une écriture en `i` ne change pas la case `j ≠ i`), qui
+  demandent une double étude de cas sur `i` et `j` avec une hypothèse
+  d'inégalité à faire descendre dans l'induction. C'est le point dur à
+  analyser en priorité (lire les erreurs de Rocq dans le JSON).
+
+**Pourquoi la passe est incomplète :** le niveau gratuit de Groq limite ce
+modèle à 200 000 tokens par jour, et un modèle qui « raisonne » en consomme
+beaucoup. Le script enregistre désormais après chaque théorème et reprend là
+où il s'est arrêté (`--resume`).
 
 ### Un constat sur la recherche d'exemples
 
@@ -99,7 +127,7 @@ piste, pas une conclusion. Les deux méthodes restent disponibles
 sudo apt install coq            # Rocq/Coq 8.18 (Ubuntu 24.04)
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
-python -m pytest -q             # 45 tests
+python -m pytest -q             # 50 tests
 
 # Référence sans LLM (aucune clé)
 python scripts/evaluate.py --provider baseline --configs zero-shot,feedback
@@ -107,7 +135,16 @@ python scripts/evaluate.py --provider baseline --configs zero-shot,feedback
 # Avec un LLM : copier .env.example en .env et renseigner la clé
 python scripts/evaluate.py --provider groq
 python scripts/evaluate.py --provider groq --suite memory_isolation --configs retrieval+feedback
+
+# Quota épuisé ? Le script s'arrête proprement ; reprendre plus tard :
+python scripts/evaluate.py --provider groq --resume results/groq_AAAAMMJJ-HHMMSS.json
 ```
+
+**Économiser le quota gratuit :** dans `.env`, `GROQ_REASONING_EFFORT=low`
+réduit fortement les tokens « de réflexion » de gpt-oss (à indiquer dans les
+résultats, car cela change le modèle évalué). Les quotas Groq sont **par
+modèle** : un autre modèle (ex. `--model qwen/qwen3.8-27b`) dispose de son
+propre quota, et permet en plus une comparaison entre modèles.
 
 ## Limites assumées
 
