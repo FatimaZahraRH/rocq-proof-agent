@@ -1,0 +1,273 @@
+{
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "max_attempts": 3,
+  "temperature": 0.2,
+  "retriever": "shape",
+  "reasoning_effort": "low",
+  "tokens": 34039,
+  "complete": false,
+  "runs": {
+    "feedback": [
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "Theorem read_out_of_bounds : forall (m : mem) (i : nat),\n  length m <= i -> read m i = None.\nProof.\n  induction m as [|x t IH]; intros i Hlen.\n  - (* m = [] *)\n    simpl. reflexivity.\n  - (* m = x :: t *)\n    simpl in Hlen.\n    destruct i as [|i'].\n    + (* i = 0, contradiction with length bound *)\n      simpl. lia.\n    + (* i = S i' *)\n      simpl. apply IH.\n      lia.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem read_out_of_bounds : forall (m : mem) (i : nat),\n  length m <= i -> read m i = None.\nProof.\n  induction m as [|x t IH]; intros i Hlen.\n  - simpl. reflexivity.\n  - simpl in Hlen. destruct i as [|i'].\n    + simpl. lia.\n    + simpl. apply IH. lia.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem read_out_of_bounds : forall (m : mem) (i : nat),\n  length m <= i -> read m i = None.\n  induction m as [|x t IH]; intros i Hlen.\n  - simpl. reflexivity.\n  - simpl in Hlen. destruct i as [|i'].\n    + simpl. lia.\n    + simpl. apply IH. lia.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          }
+        ],
+        "seconds": 3.51,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_in_bounds",
+        "difficulty": "moyen",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "Theorem read_in_bounds : forall (m : mem) (i : nat),\n  i < length m -> exists v, read m i = Some v.\nProof.\n  intros m i Hlen.\n  revert i Hlen.\n  induction m as [|x t IH]; intros i Hlen.\n  - simpl in Hlen. lia.\n  - simpl in Hlen.\n    destruct i as [|i'].\n    + simpl. exists x. reflexivity.\n    + simpl.\n      assert (Hlt : i' < length t).\n      { simpl in Hlen. lia. }\n      specialize (IH i' Hlt) as [v Hv].\n      exists v. assumption.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem read_in_bounds : forall (m : mem) (i : nat),\n  i < length m -> exists v, read m i = Some v.\nProof.\n  intros m i Hlen.\n  revert i Hlen.\n  induction m as [|x t IH]; intros i Hlen.\n  - simpl in Hlen. lia.\n  - simpl in Hlen.\n    destruct i as [|i'].\n    + exists x. reflexivity.\n    + simpl.\n      assert (Hlt : i' < length t).\n      { simpl in Hlen. lia. }\n      specialize (IH i' Hlt) as [v Hv].\n      exists v. assumption.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "intros m i Hlen.\nrevert i Hlen.\ninduction m as [|x t IH]; intros i Hlen.\n- simpl in Hlen. lia.\n- simpl in Hlen.\n  destruct i as [|i'].\n  + exists x. reflexivity.\n  + simpl.\n    assert (Hlt : i' < length t) by (simpl in Hlen; lia).\n    specialize (IH i' Hlt) as [v Hv].\n    exists v. exact Hv.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 3.96,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros m i Hle.\nunfold safe_read.\napply Nat.ltb_ge.\nlia.",
+            "ok": false,
+            "error": "Error: In environment\nm : mem\ni : nat\nHle : length m <= i\nUnable to unify\n \"((?M1378 <? ?M1379) = false -> ?M1379 <= ?M1378) /\\\n  (?M1379 <= ?M1378 -> (?M1378 <? ?M1379) = false)\" with\n \"(if i <? length m then read m i else None) = None\".",
+            "rejected": false
+          },
+          {
+            "proof": "intros m i Hle.\nunfold safe_read.\napply Nat.ltb_ge in Hle.\nrewrite Hle.\nreflexivity.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 15.66,
+        "n_attempts": 2
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_some_in_bounds",
+        "difficulty": "moyen",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros m i v H.\nunfold safe_read in H.\ndestruct (i <? length m) eqn:Hi.\n- apply Nat.ltb_lt in Hi. exact Hi.\n- discriminate H.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 1.38,
+        "n_attempts": 1
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_length",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "Theorem write_length : forall (m : mem) (i v : nat),\n  length (write m i v) = length m.\nProof.\n  induction m as [|h t IH] using list_ind.\n  - (* m = [] *)\n    intros i v. simpl. reflexivity.\n  - (* m = h :: t *)\n    intros i v.\n    destruct i as [|i'].\n    + simpl. reflexivity.\n    + simpl. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_length : forall (m : mem) (i v : nat),\n  length (write m i v) = length m.\nProof.\n  induction m as [|h t IH]; intros i v.\n  - simpl. reflexivity.\n  - destruct i as [|i'].\n    + simpl. reflexivity.\n    + simpl. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_length : forall (m : mem) (i v : nat),\n  length (write m i v) = length m.\n  induction m as [|h t IH]; intros i v.\n  - simpl. reflexivity.\n  - destruct i as [|i'].\n    + simpl. reflexivity.\n    + simpl. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          }
+        ],
+        "seconds": 30.79,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_out_of_bounds_noop",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "Theorem write_out_of_bounds_noop : forall (m : mem) (i v : nat),\n  length m <= i -> write m i v = m.\nProof.\n  induction m as [|x t IH] using rev_ind; intros i v Hlen.\n  - (* m = [] *)\n    simpl. reflexivity.\n  - (* m = x :: t *)\n    simpl in Hlen.\n    destruct i as [|i'].\n    + (* i = 0, contradiction with length bound *)\n      simpl in Hlen. lia.\n    + (* i = S i' *)\n      simpl.\n      assert (Hlen' : length t <= i') by lia.\n      rewrite IH with (i:=i') (v:=v); auto.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_out_of_bounds_noop : forall (m : mem) (i v : nat),\n  length m <= i -> write m i v = m.\nProof.\n  intros m i v Hlen.\n  revert i Hlen.\n  induction m as [|x t IH]; intros i Hlen.\n  - simpl. reflexivity.\n  - simpl in Hlen. destruct i as [|i'].\n    + simpl in Hlen. lia.\n    + simpl. f_equal. apply IH. lia.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "intros m i v Hlen.\ngeneralize dependent i.\ninduction m as [|x t IH]; intros i Hlen.\n- simpl. reflexivity.\n- simpl in Hlen. destruct i as [|i'].\n  + simpl in Hlen. lia.\n  + simpl. f_equal. apply IH. lia.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 22.34,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_same",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "Theorem write_read_same : forall (m : mem) (i v : nat),\n  i < length m -> read (write m i v) i = Some v.\nProof.\n  induction m as [|x xs IH] using rev_ind; intros i v Hlen.\n  - (* m = [] *) simpl in Hlen. lia.\n  - (* m = x :: xs *) simpl in Hlen.\n    destruct i as [|i'].\n    + (* i = 0 *) simpl. reflexivity.\n    + (* i = S i' *) simpl.\n      assert (Hlt : i' < length xs).\n      { simpl in Hlen. lia. }\n      specialize (IH i' v Hlt).\n      simpl in IH. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_read_same : forall (m : mem) (i v : nat),\n  i < length m -> read (write m i v) i = Some v.\nProof.\n  induction m as [|x xs IH]; intros i v Hlen.\n  - simpl in Hlen. lia.\n  - simpl in Hlen.\n    destruct i as [|i'].\n    + simpl. reflexivity.\n    + simpl.\n      assert (Hlt : i' < length xs) by (simpl in Hlen; lia).\n      specialize (IH i' v Hlt).\n      simpl in IH. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_read_same : forall (m : mem) (i v : nat),\n  i < length m -> read (write m i v) i = Some v.\nintros m i v Hlen.\ngeneralize dependent i.\ninduction m as [|x xs IH]; intros i Hlen.\n- simpl in Hlen. lia.\n- simpl in Hlen.\n  destruct i as [|i'].\n  + simpl. reflexivity.\n  + simpl.\n    assert (Hlt : i' < length xs) by (simpl in Hlen; lia).\n    specialize (IH i' v Hlt).\n    simpl in IH. rewrite IH. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          }
+        ],
+        "seconds": 31.78,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_other",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "Theorem write_read_other : forall (m : mem) (i j v : nat),\n  i <> j -> read (write m i v) j = read m j.\nProof.\n  induction m as [|x t IH]; intros i j v Hneq.\n  - (* m = [] *)\n    simpl. destruct i; simpl; reflexivity.\n  - (* m = x :: t *)\n    destruct i as [|i']; destruct j as [|j'].\n    + (* i = 0, j = 0 *) exfalso; apply Hneq; reflexivity.\n    + (* i = 0, j = S j' *)\n      simpl. reflexivity.\n    + (* i = S i', j = 0 *)\n      simpl. reflexivity.\n    + (* i = S i', j = S j' *)\n      simpl. apply IH. intro Heq. apply Hneq. f_equal. assumption.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_read_other : forall (m : mem) (i j v : nat),\n  i <> j -> read (write m i v) j = read m j.\nProof.\n  induction m as [|x t IH]; intros i j v Hneq; simpl.\n  - (* m = [] *)\n    destruct i; simpl; reflexivity.\n  - (* m = x :: t *)\n    destruct i as [|i']; destruct j as [|j']; simpl.\n    + (* i = 0, j = 0 *)\n      exfalso; apply Hneq; reflexivity.\n    + (* i = 0, j = S j' *)\n      reflexivity.\n    + (* i = S i', j = 0 *)\n      reflexivity.\n    + (* i = S i', j = S j' *)\n      assert (Hneq' : i' <> j') as Hneq'.\n      { intro Heq. apply Hneq. f_equal. assumption. }\n      apply IH; assumption.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "Theorem write_read_other : forall (m : mem) (i j v : nat),\n  i <> j -> read (write m i v) j = read m j.\nProof.\n  induction m as [|x t IH]; intros i j v Hneq; simpl.\n  - (* m = [] *)\n    destruct i; simpl; reflexivity.\n  - (* m = x :: t *)\n    destruct i as [|i']; destruct j as [|j']; simpl.\n    + (* i = 0, j = 0 *) exfalso; apply Hneq; reflexivity.\n    + (* i = 0, j = S j' *) reflexivity.\n    + (* i = S i', j = 0 *) reflexivity.\n    + (* i = S i', j = S j' *)\n      assert (Hneq' : i' <> j') as Hneq'.\n      { intro Heq; apply Hneq; f_equal; assumption. }\n      apply IH; assumption.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          }
+        ],
+        "seconds": 7.69,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_write_same",
+        "difficulty": "moyen",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros m i v w.\nrevert i v w.\ninduction m as [|x t IH]; intros i v w; simpl.\n- reflexivity.\n- destruct i as [|k].\n  + reflexivity.\n  + f_equal. apply IH.",
+            "ok": false,
+            "error": "Error:\nIn environment\nx : nat\nt : list nat\nIH : forall i v w : nat, write (write t i v) i w = write t i w\nk, v, w : nat\nUnable to unify\n \"write (write t ?M1388 ?M1389) ?M1388 ?M1390 = write t ?M1388 ?M1390\" with\n \"write (x :: write t k v) (S k) w = x :: write t k w\".",
+            "rejected": false
+          },
+          {
+            "proof": "intros m i v w.\nrevert i v w.\ninduction m as [|x t IH]; intros i v w; simpl.\n- reflexivity.\n- destruct i as [|k].\n  + reflexivity.\n  + simpl. f_equal. apply IH.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 14.94,
+        "n_attempts": 2
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_outside_region_isolated",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "Theorem write_outside_region_isolated : forall (m : mem) (base size i j v : nat),\n  in_region base size j -> ~ in_region base size i ->\n  read (write m i v) j = read m j.\nProof.\n  intros m base size i j v Hjin Hnin.\n  (* auxiliary lemma about read after write *)\n  assert (Hrw : forall m i v j,\n      read (write m i v) j = if Nat.eqb i j then Some v else read m j).\n  { induction m as [|x t IH] ; intros i v j; simpl.\n    - (* m = [] *) reflexivity.\n    - destruct i as [|i']; destruct j as [|j']; simpl.\n      + (* i=0, j=0 *) rewrite Nat.eqb_refl. reflexivity.\n      + (* i=0, j=S j' *) rewrite Nat.eqb_sym. simpl. rewrite Nat.eqb_neq; auto. reflexivity.\n      + (* i=S i', j=0 *) rewrite Nat.eqb_sym. simpl. rewrite Nat.eqb_neq; auto. reflexivity.\n      + (* i=S i', j=S j' *) rewrite Nat.eqb_sym. simpl. rewrite IH. reflexivity. }\n  (* use the auxiliary lemma *)\n  specialize (Hrw m i v j).\n  rewrite Hrw.\n  (* from the hypotheses we get i <> j *)\n  assert (Hij : i <> j).\n  { intro Heq.\n    apply Hnin.\n    subst j.\n    destruct Hjin as [Hle _].\n    split; [apply Hle|].\n    (* j = i, and j is in region, so i is in region, contradiction *)\n    rewrite <- Nat.add_1_r in *.\n    (* we just need i < base+size, which follows from Hjin's second component *)\n    destruct Hjin as [_ Hlt].\n    exact Hlt. }\n  (* now simplify the if *)\n  apply Nat.eqb_neq in Hij.\n  rewrite Hij. reflexivity.",
+            "ok": false,
+            "error": "Error: Nested proofs are discouraged and not allowed by default. This error\nprobably means that you forgot to close the last \"Proof.\" with \"Qed.\" or\n\"Defined.\". If you really intended to use nested proofs, you can do so by\nturning the \"Nested Proofs Allowed\" flag on.",
+            "rejected": false
+          },
+          {
+            "proof": "intros m base size i j v Hjin Hnin.\n(* Lemma about read after write *)\nassert (Hrw : forall m i v j,\n          read (write m i v) j = if Nat.eqb i j then Some v else read m j).\n{\n  induction m as [|x t IH]; intros i v j; simpl.\n  - reflexivity.\n  - destruct i as [|i']; destruct j as [|j']; simpl.\n    + rewrite Nat.eqb_refl. reflexivity.\n    + rewrite Nat.eqb_sym. rewrite Nat.eqb_neq; [reflexivity|lia].\n    + rewrite Nat.eqb_sym. rewrite Nat.eqb_neq; [reflexivity|lia].\n    + rewrite Nat.eqb_sym. rewrite IH. reflexivity.\n}\nspecialize (Hrw m i v j).\nrewrite Hrw.\n(* i and j are different because i is not in the region while j is *)\nassert (Hij : i <> j).\n{\n  intro Heq.\n  apply Hnin.\n  subst j.\n  destruct Hjin as [_ Hlt].\n  split; [apply Nat.le_refl|].\n  exact Hlt.\n}\napply Nat.eqb_neq in Hij.\nrewrite Hij. reflexivity.",
+            "ok": false,
+            "error": "Error: i is already used.",
+            "rejected": false
+          },
+          {
+            "proof": "intros m base size i j v Hjin Hnin.\n(* auxiliary lemma about read after write *)\nassert (Hrw : forall (m' : mem) (i' v' j' : nat),\n          read (write m' i' v') j' =\n          if Nat.eqb i' j' then Some v' else read m' j').\n{\n  induction m' as [|x t IH]; intros i' v' j'; simpl.\n  - reflexivity.\n  - destruct i' as [|i0]; destruct j' as [|j0]; simpl.\n    + rewrite Nat.eqb_refl. reflexivity.\n    + rewrite Nat.eqb_sym. rewrite Nat.eqb_neq; [reflexivity|lia].\n    + rewrite Nat.eqb_sym. rewrite Nat.eqb_neq; [reflexivity|lia].\n    + rewrite Nat.eqb_sym. rewrite IH. reflexivity.\n}\nspecialize (Hrw m i v j).\nrewrite Hrw.\n(* i and j are different because i is not in the region while j is *)\nassert (Hij : i <> j).\n{\n  intro Heq.\n  apply Hnin.\n  subst j.\n  destruct Hjin as [_ Hlt].\n  split; [apply Nat.le_refl|].\n  exact Hlt.\n}\napply Nat.eqb_neq in Hij.\nrewrite Hij. reflexivity.",
+            "ok": false,
+            "error": "Error:\nIn environment\nm : mem\nbase, size, i, j, v : nat\nHjin : in_region base size j\nHnin : ~ in_region base size i\ni', v', j' : nat\nUnable to unify \"if i' =? j' then Some v' else None\" with \n\"None\".",
+            "rejected": false
+          }
+        ],
+        "seconds": 36.88,
+        "n_attempts": 3
+      }
+    ]
+  },
+  "expected": {
+    "memory_isolation": 11
+  }
+}

@@ -1,0 +1,1118 @@
+{
+  "provider": "baseline",
+  "model": "intros;simpl;auto",
+  "max_attempts": 3,
+  "temperature": 0.2,
+  "retriever": "shape",
+  "reasoning_effort": null,
+  "tokens": 0,
+  "complete": true,
+  "runs": {
+    "zero-shot": [
+      {
+        "suite": "basics",
+        "theorem": "add_zero_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.19,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "add_succ_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.19,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "add_comm_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof add_comm_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof add_comm_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof add_comm_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.63,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "mul_zero_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.2,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_nil_right_bench",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_nil_right_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_nil_right_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_nil_right_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.58,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_assoc_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_assoc_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_assoc_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_assoc_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_length_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "rev_length_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof rev_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof rev_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof rev_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "count_app",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_app): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_app): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_app): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.62,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "count_le_length",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_le_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_le_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_le_length): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.65,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_in_bounds",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.77,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.62,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_some_in_bounds",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_some_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_some_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_some_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.63,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_length",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_length): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.57,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_out_of_bounds_noop",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_out_of_bounds_noop): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_out_of_bounds_noop): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_out_of_bounds_noop): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.9,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_same",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_same): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_other",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_other): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.58,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_write_same",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_write_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_write_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_write_same): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_outside_region_isolated",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_outside_region_isolated): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_outside_region_isolated): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_outside_region_isolated): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.62,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_after_write_other",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_after_write_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_after_write_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_after_write_other): Attempt to save an incomplete proof",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      }
+    ],
+    "feedback": [
+      {
+        "suite": "basics",
+        "theorem": "add_zero_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.2,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "add_succ_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.2,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "add_comm_bench",
+        "difficulty": "moyen",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof add_comm_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.73,
+        "n_attempts": 2
+      },
+      {
+        "suite": "basics",
+        "theorem": "mul_zero_right",
+        "difficulty": "facile",
+        "proved": true,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": true,
+            "error": "",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.21,
+        "n_attempts": 1
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_nil_right_bench",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_nil_right_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_assoc_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_assoc_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "app_length_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof app_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.58,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "rev_length_bench",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof rev_length_bench): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "count_app",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_app): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.62,
+        "n_attempts": 3
+      },
+      {
+        "suite": "basics",
+        "theorem": "count_le_length",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof count_le_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.65,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "read_in_bounds",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof read_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_out_of_bounds",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_out_of_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.63,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_some_in_bounds",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_some_in_bounds): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_length",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_length): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_out_of_bounds_noop",
+        "difficulty": "facile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_out_of_bounds_noop): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.63,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_same",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_read_other",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_read_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.61,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_write_same",
+        "difficulty": "moyen",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:  (in proof write_write_same): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "write_outside_region_isolated",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof write_outside_region_isolated): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.6,
+        "n_attempts": 3
+      },
+      {
+        "suite": "memory_isolation",
+        "theorem": "safe_read_after_write_other",
+        "difficulty": "difficile",
+        "proved": false,
+        "attempts": [
+          {
+            "proof": "intros; simpl; auto.",
+            "ok": false,
+            "error": "Error:\n (in proof safe_read_after_write_other): Attempt to save an incomplete proof",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          },
+          {
+            "proof": "intros; lia.",
+            "ok": false,
+            "error": "Error: Tactic failure:  Cannot find witness.",
+            "rejected": false
+          }
+        ],
+        "seconds": 0.59,
+        "n_attempts": 3
+      }
+    ]
+  },
+  "expected": {
+    "basics": 10,
+    "memory_isolation": 11
+  }
+}
